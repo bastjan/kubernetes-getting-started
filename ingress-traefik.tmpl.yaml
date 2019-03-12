@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: #SERVICE#
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: #SERVICE#.traefik.k8s
+    http:
+      paths:
+      - backend:
+          serviceName: #SERVICE#
+          servicePort: 80
