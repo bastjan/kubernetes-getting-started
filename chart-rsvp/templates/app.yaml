@@ -30,7 +30,7 @@ spec:
           value: '/.'
         envFrom:
         - configMapRef:
-            name: customer-config-{{ .name | lower | kebabcase }}
+            name: customer-config-{{ .name | lower | kebabcase }}-{{ toJson . | sha256sum }}
         ports:
         - containerPort: 5000
           name: web-port
