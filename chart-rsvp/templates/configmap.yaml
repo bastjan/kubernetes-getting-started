@@ -1,0 +1,15 @@
+{{- range .Values.customers }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customer-config-{{ .name | lower | kebabcase }}
+  labels:
+    app: rsvp
+    customer: {{ .name | lower | kebabcase }}
+data:
+  TEXT1: {{ .name }}
+  TEXT2: {{ .slogan }}
+  LOGO: {{ .logo }}
+  COMPANY: {{ .name }}, {{ .location }}
+{{- end }}

@@ -1,0 +1,19 @@
+# Default values for rsvp.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Forked from teamcloudyuga/rsvpapp
+image: gitlab.terreactive.ch:5555/swi/k8s-rsvp
+
+ingress:
+  host: rsvp.traefik.k8s
+
+customers:
+- name: terreActive AG
+  slogan: Secure since 1801
+  logo: https://www.terreactive.ch/sites/default/files/terreactive_logo.png
+  location: Aarau
+- name: Aare Kraftwerke AG
+  slogan: Energising your future
+  logo: http://naturschutz.ch/wp-content/uploads/398px-Ferc-fish_ladder.svg.png
+  location: Aarau

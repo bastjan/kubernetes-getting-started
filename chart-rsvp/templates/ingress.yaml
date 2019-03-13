@@ -1,0 +1,19 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rsvp
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      {{- range .Values.customers }}
+      - path: /{{ .name | lower | kebabcase }}
+        backend:
+          serviceName: rsvp-{{ .name | lower | kebabcase }}
+          servicePort: 80
+      {{- end }}
