@@ -1,23 +1,19 @@
-{{- range .Values.customers }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rsvp-db-{{ .name | lower | kebabcase }}
+  name: rsvp-db
   labels:
     appdb: rsvpdb
-    customer: {{ .name | lower | kebabcase }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       appdb: rsvpdb
-      customer: {{ .name | lower | kebabcase }}
   template:
     metadata:
       labels:
         appdb: rsvpdb
-        customer: {{ .name | lower | kebabcase }}
     spec:
       containers:
       - name: rsvp-db
@@ -28,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rsvp-db-{{ .name | lower | kebabcase }}
+  name: rsvp-db
   labels:
     app: rsvpdb
 spec:
@@ -37,5 +33,3 @@ spec:
     protocol: TCP
   selector:
     appdb: rsvpdb
-    customer: {{ .name | lower | kebabcase }}
-{{- end }}

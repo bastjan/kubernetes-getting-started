@@ -25,9 +25,9 @@ spec:
         image: {{ $root.Values.image }}
         env:
         - name: MONGODB_HOST
-          value: mongodb
-        - name: APP_PREFIX
-          value: '/.'
+          value: rsvp-db
+        - name: MONGODB_DATABASE
+          value: {{ .name | lower | kebabcase }}
         envFrom:
         - configMapRef:
             name: customer-config-{{ .name | lower | kebabcase }}-{{ toJson . | sha256sum }}
